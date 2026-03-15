@@ -24,10 +24,6 @@
       nativeBuildInputs = [pkgs.pkg-config];
       env.RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
     };
-    packages."${system}".default = pkgs.rustPlatform.buildRustPackage {
-      name = "ratatui-counter-app";
-      src = ./.;
-      cargoLock.lockFile = ./Cargo.lock;
-    };
+    packages."${system}".default = pkgs.callPackage ./default.nix {};
   };
 }
